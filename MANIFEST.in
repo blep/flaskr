@@ -1,0 +1,9 @@
+# Include the license file
+include LICENSE
+
+# Include the data files
+#recursive-include data *
+
+graft flaskr/templates
+graft flaskr/static
+include flaskr/schema.sql
