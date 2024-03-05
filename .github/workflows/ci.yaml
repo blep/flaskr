@@ -22,6 +22,11 @@ jobs:
         ls -R ${{ github.workspace }}
         ls
         ls ../
+    - name: Display directory structure
+      run: |
+        sudo apt update
+        sudo apt install tree
+        tree ${{ github.workspace }}/flaskr-siemens-project
         
 
     - name: Install dependencies
