@@ -1,6 +1,6 @@
 import os
 #import flaskr
-from ..flaskr import flaskr
+from ../flaskr import flaskr
 import unittest
 import tempfile
 
