@@ -20,6 +20,8 @@ jobs:
       run: |
         pwd
         ls -R ${{ github.workspace }}
+        ls
+        ls ../
 
     - name: Install dependencies
       run: |
