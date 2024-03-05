@@ -26,7 +26,7 @@ jobs:
       run: |
         sudo apt update
         sudo apt install tree
-        tree ${{ github.workspace }}/flaskr-siemens-project
+        tree /home/runner/work/
         
 
     - name: Install dependencies
