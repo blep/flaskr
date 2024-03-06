@@ -3,7 +3,9 @@ name: Docker
 on:
   push:
     branches: [ "master" ]
-    tags: [ 'v*.*.*' ]
+    # Publish semver tags as releases.
+    tags:
+      - 'v*'  # Trigger the workflow for tags starting with 'v'
   pull_request:
     branches: [ "master" ]
 
@@ -39,4 +41,4 @@ jobs:
         with:
           context: .
           push: ${{ github.event_name != 'pull_request' }}
-          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
+          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.ref }}
