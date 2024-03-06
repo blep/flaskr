@@ -29,6 +29,7 @@ jobs:
       run: |
           sudo apt remove containerd
           sudo apt install -y docker-ce docker-ce-cli containerd.io
+          sudo systemctl restart docker
 
     - name: Run tests
       run: pytest
