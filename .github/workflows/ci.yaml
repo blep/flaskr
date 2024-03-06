@@ -27,7 +27,8 @@ jobs:
 
     - name: Install Docker
       run: |
-          sudo apt install -y docker.io
+          sudo apt remove containerd
+          sudo apt install -y docker-ce docker-ce-cli containerd.io
 
     - name: Run tests
       run: pytest
