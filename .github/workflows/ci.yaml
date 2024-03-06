@@ -31,5 +31,9 @@ jobs:
           sudo apt install -y docker-ce docker-ce-cli containerd.io
           sudo systemctl restart docker
 
+    - name: Build Docker image from existing Dockerfile
+      run: |
+          docker build -t flask-app .
+
     - name: Run tests
       run: pytest
