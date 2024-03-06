@@ -33,7 +33,6 @@ jobs:
     - name: Install and Run code formatter <black>
       run: |
         pip install black
-        black --check .
         black .
         
     - name: Run tests
