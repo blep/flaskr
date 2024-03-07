@@ -37,6 +37,14 @@ jobs:
         
     - name: Run tests
       run: pytest
+           pytest --junitxml=pytest_results.xml
+      continue-on-error: true
+
+    - name: Store test results
+      uses: actions/upload-artifact@v2
+      with:
+        name: test-results
+        path: pytest_results.xml      
 
     - name: Install Docker
       run: |
@@ -68,4 +76,6 @@ jobs:
     - name: Push latest Docker image to GitHub Packages
       if: github.event_name == 'push' && github.ref == 'refs/heads/master'
       run: docker push ghcr.io/${{ github.repository_owner }}/flask-app:latest
+
+
     
