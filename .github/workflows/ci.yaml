@@ -37,7 +37,6 @@ jobs:
         
     - name: Run tests
       run: |
-        pytest
         pytest --junitxml=pytest_results.xml
       continue-on-error: true
 
