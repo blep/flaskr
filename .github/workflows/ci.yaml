@@ -36,8 +36,9 @@ jobs:
         black .
         
     - name: Run tests
-      run: pytest
-           pytest --junitxml=pytest_results.xml
+      run: |
+        pytest
+        pytest --junitxml=pytest_results.xml
       continue-on-error: true
 
     - name: Store test results
