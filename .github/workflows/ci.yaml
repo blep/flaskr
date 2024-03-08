@@ -43,10 +43,18 @@ jobs:
       run: |
         pytest --junitxml=pytest_results.xml
 
-    - name: Run acceptance tests
+    - name: Start Flask server
+      run: python manage.py run &
+    
+    - name: Wait for Flask server to start
       run: |
-          python manage.py run
-          python acceptance_tests.py
+        while ! curl -sSf http://127.0.0.1:5000 >/dev/null; do
+            echo "Waiting for Flask server to start..."
+            sleep 5
+        done
+    
+    - name: Run acceptance tests
+      run: python acceptance_tests.py
 
     - name: Store test results
       uses: actions/upload-artifact@v2
