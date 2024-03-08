@@ -45,14 +45,7 @@ jobs:
 
     - name: Start Flask server
       run: python manage.py run &
-    
-    - name: Wait for Flask server to start
-      run: |
-        while ! curl -sSf https://127.0.0.1:5000 >/dev/null; do
-            echo "Waiting for Flask server to start..."
-            sleep 5
-        done
-    
+        
     - name: Run acceptance tests
       run: python acceptance_tests.py
 
