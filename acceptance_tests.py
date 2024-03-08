@@ -8,3 +8,9 @@ def test_home_page():
     response = requests.get(base_url)
     assert response.status_code == 200
     assert b'Hello, World!' in response.content
+
+
+# Run the tests
+if __name__ == '__main__':
+    test_home_page()
+    print('All tests passed!')
