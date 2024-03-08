@@ -34,7 +34,11 @@ jobs:
       run: |
         pip install black
         black .
-        
+
+    - name: Build project
+      run: |
+        python flaskr/flaskr.py
+      
     - name: Run tests
       run: |
         pytest --junitxml=pytest_results.xml
