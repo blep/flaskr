@@ -37,7 +37,7 @@ jobs:
 
     - name: Build project
       run: |
-        python flaskr/flaskr.py
+        python setup.py build
       
     - name: Run tests
       run: |
