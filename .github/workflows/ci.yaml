@@ -43,6 +43,10 @@ jobs:
       run: |
         pytest --junitxml=pytest_results.xml
 
+    - name: Run acceptance tests
+      run: |
+          python acceptance_tests.py
+
     - name: Store test results
       uses: actions/upload-artifact@v2
       with:
