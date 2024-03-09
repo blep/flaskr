@@ -58,8 +58,7 @@ jobs:
     - name: Run security scanning (Bandit)
       run: |
         pip install bandit
-        bandit -r .
-      continue-on-error: true
+        bandit -r . --exit-zero
 
     - name: Install Docker
       run: |
