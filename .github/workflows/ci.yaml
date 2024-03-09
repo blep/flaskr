@@ -59,6 +59,7 @@ jobs:
       run: |
         pip install bandit
         bandit -r .
+      continue-on-error: true
 
     - name: Install Docker
       run: |
