@@ -109,6 +109,7 @@ jobs:
     - name: Install AWS CLI
       run: |
         pip install awscli
+        aws --version
 
     - name: Authenticate with AWS
       run: aws configure set aws_access_key_id AKIA4MTWMIKHQPD3WJNA && \
