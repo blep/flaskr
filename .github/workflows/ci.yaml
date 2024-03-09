@@ -49,16 +49,22 @@ jobs:
     - name: Run acceptance tests
       run: python acceptance_tests.py
 
-    - name: Store test results
+    - name: Store unit test results
       uses: actions/upload-artifact@v2
       with:
         name: test-results
-        path: pytest_results.xml    
+        path: pytest_unit_test_results.xml    
 
     - name: Run security scanning (Bandit)
       run: |
         pip install bandit
-        bandit -r . --exit-zero
+        bandit -r . --exit-zero --format json -o bandit_report.json
+
+    - name: Store Bandit report (security scan)
+      uses: actions/upload-artifact@v2
+      with:
+        name: test-results
+        path: bandit_security_scan_report.json
 
     - name: Install Docker
       run: |
