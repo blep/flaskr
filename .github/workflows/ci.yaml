@@ -53,7 +53,12 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: test-results
-        path: pytest_results.xml      
+        path: pytest_results.xml    
+
+    - name: Run security scanning (Bandit)
+      run: |
+        pip install bandit
+        bandit -r .
 
     - name: Install Docker
       run: |
