@@ -97,5 +97,14 @@ jobs:
       if: github.event_name == 'push' && github.ref == 'refs/heads/master'
       run: docker push ghcr.io/${{ github.repository_owner }}/flask-app:latest
 
+    - name: Install Trivy
+      run: |
+        wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | sudo apt-key add -
+        echo deb https://aquasecurity.github.io/trivy-repo/deb $(lsb_release -cs) main | sudo tee -a /etc/apt/sources.list.d/trivy.list
+        sudo apt-get update && sudo apt-get install -y trivy
+
+    - name: Vulnerability scanning with Trivy
+      run: trivy --no-progress flask-app:latest
+
 
     
