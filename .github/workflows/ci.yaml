@@ -15,10 +15,10 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
       
-    # - name: Install Python
-    #   run: |
-    #     sudo apt update
-    #     sudo apt install python3 python3-pip       
+    - name: Install Python
+      run: |
+        sudo apt update
+        sudo apt install python3 python3-pip       
 
     # - name: Install dependencies
     #   run: |
@@ -108,8 +108,7 @@ jobs:
 
     - name: Install AWS CLI
       run: |
-        sudo apt-get update
-        sudo apt-get install -y awscli
+        pip install awscli
 
     - name: Authenticate with AWS
       run: awscli configure set aws_access_key_id AKIA4MTWMIKHQPD3WJNA && \
