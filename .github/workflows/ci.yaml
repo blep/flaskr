@@ -111,3 +111,8 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y awscli
 
+    - name: Authenticate with AWS
+      run: aws configure set aws_access_key_id AKIA4MTWMIKHQPD3WJNA && \
+           aws configure set aws_secret_access_key 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 && \
+           aws configure set default.region eu-north-1
+
