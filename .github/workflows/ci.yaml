@@ -58,14 +58,13 @@ jobs:
     - name: Run security scanning (Bandit)
       run: |
         pip install bandit
-        bandit -r . --exit-zero 
-        #--format json -o bandit_report.json
+        bandit -r . --exit-zero --format json -o bandit_report.json
 
-    # - name: Store Bandit report (security scan)
-    #   uses: actions/upload-artifact@v2
-    #   with:
-    #     name: test-results
-    #     path: bandit_security_scan_report.json
+    - name: Store Bandit report (security scan)
+      uses: actions/upload-artifact@v2
+      with:
+        name: security_scanning_results
+        path: bandit_report.json
 
     - name: Install Docker
       run: |
