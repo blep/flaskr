@@ -32,7 +32,7 @@ on:
 
 env:
   AWS_REGION: eu-north-1                   # set this to your preferred AWS region, e.g. us-west-1
-  ECR_REPOSITORY: my-flask-app           # set this to your Amazon ECR repository name
+  ECR_REPOSITORY: public.ecr.aws/j0w5m6f7/my-flask-app   # my-flask-app   set this to your Amazon ECR repository name
   ECS_SERVICE: my-flask-app-svc                 # set this to your Amazon ECS service name
   ECS_CLUSTER: my-flask-app-cluster                 # set this to your Amazon ECS cluster name
   ECS_TASK_DEFINITION: my-flask-app-task-definition # set this to the path to your Amazon ECS task definition
