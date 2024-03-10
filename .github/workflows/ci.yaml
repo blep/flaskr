@@ -118,10 +118,12 @@ jobs:
       run: |
         zip -r artifacts.zip .
         echo "Artifacts compressed as artifacts.zip."
+        pwd
+        ls
 
     - name: Upload Application Artifacts to S3
       run: |
-        aws s3 cp ./artifacts.zip s3://deploybucketflask/ --recursive
+        aws s3 cp ./artifacts.zip s3://deploybucketflask/ 
         echo "Artifacts uploaded to S3 bucket."
 
     # - name: Deploy to AWS CodeDeploy
