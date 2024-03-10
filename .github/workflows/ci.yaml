@@ -130,3 +130,4 @@ jobs:
       run: |
         aws deploy create-deployment --application-name flask-app --deployment-group-name flask-app-dep-grp --s3-location bucket=s3://deploybucketflask/,key=artifacts,bundleType=zip
         echo "Deployment created in AWS CodeDeploy."
+        
