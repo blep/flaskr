@@ -126,7 +126,7 @@ jobs:
         aws s3 cp ./artifacts.zip s3://deploybucketflask/ 
         echo "Artifacts uploaded to S3 bucket."
 
-    # - name: Deploy to AWS CodeDeploy
-    #   run: |
-    #     aws deploy create-deployment --application-name flask-app --deployment-group-name flask-app-dep-grp --s3-location bucket=your-s3-bucket,key=artifacts,bundleType=zip
-    #     echo "Deployment created in AWS CodeDeploy."
+    - name: Deploy to AWS CodeDeploy
+      run: |
+        aws deploy create-deployment --application-name flask-app --deployment-group-name flask-app-dep-grp --s3-location bucket=s3://deploybucketflask/,key=artifacts,bundleType=zip
+        echo "Deployment created in AWS CodeDeploy."
