@@ -105,3 +105,11 @@ jobs:
 
     - name: Vulnerability scanning with Trivy
       run: trivy image flask-app:latest
+
+    - name: Install AWS CLI
+      run: |
+         sudo apt-get install awscli
+    
+    - name: Authenticate with AWS
+      run: |
+        aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }} && aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }} && aws configure set default.region eu-north-1
