@@ -113,3 +113,8 @@ jobs:
     - name: Authenticate with AWS
       run: |
         aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }} && aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }} && aws configure set default.region eu-north-1
+
+    - name: Upload Application Artifacts to S3
+      run: |
+        aws s3 cp ./ s3://deploybucketflask/artifacts --recursive
+        echo "Artifacts uploaded to S3 bucket."
