@@ -105,4 +105,3 @@ jobs:
 
     - name: Vulnerability scanning with Trivy
       run: trivy image flask-app:latest
-
