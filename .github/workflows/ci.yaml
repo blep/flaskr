@@ -114,9 +114,14 @@ jobs:
       run: |
         aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }} && aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }} && aws configure set default.region eu-north-1
 
+    - name: Compress Application Artifacts
+      run: |
+        zip -r artifacts.zip .
+        echo "Artifacts compressed as artifacts.zip."
+
     - name: Upload Application Artifacts to S3
       run: |
-        aws s3 cp ./ s3://deploybucketflask/artifacts --recursive
+        aws s3 cp ./artifacts.zip s3://deploybucketflask/ --recursive
         echo "Artifacts uploaded to S3 bucket."
 
     # - name: Deploy to AWS CodeDeploy
