@@ -1,0 +1,48 @@
+{
+    "taskDefinitionArn": "arn:aws:ecs:eu-north-1:851725533839:task-definition/my-flask-app-task-definition:1",
+    "containerDefinitions": [
+        {
+            "name": "container1",
+            "image": "public.ecr.aws/j0w5m6f7/my-flask-app",
+            "cpu": 0,
+            "portMappings": [],
+            "essential": true,
+            "environment": [],
+            "environmentFiles": [],
+            "mountPoints": [],
+            "volumesFrom": [],
+            "systemControls": []
+        }
+    ],
+    "family": "my-flask-app-task-definition",
+    "executionRoleArn": "arn:aws:iam::851725533839:role/ecsTaskExecutionRole",
+    "networkMode": "awsvpc",
+    "revision": 1,
+    "volumes": [],
+    "status": "ACTIVE",
+    "requiresAttributes": [
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
+        },
+        {
+            "name": "ecs.capability.task-eni"
+        }
+    ],
+    "placementConstraints": [],
+    "compatibilities": [
+        "EC2",
+        "FARGATE"
+    ],
+    "requiresCompatibilities": [
+        "FARGATE"
+    ],
+    "cpu": "1024",
+    "memory": "3072",
+    "runtimePlatform": {
+        "cpuArchitecture": "X86_64",
+        "operatingSystemFamily": "LINUX"
+    },
+    "registeredAt": "2024-03-10T20:51:02.292Z",
+    "registeredBy": "arn:aws:iam::851725533839:root",
+    "tags": []
+}
