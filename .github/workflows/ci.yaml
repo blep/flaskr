@@ -118,8 +118,6 @@ jobs:
       run: |
         zip -r artifacts.zip .
         echo "Artifacts compressed as artifacts.zip."
-        pwd
-        ls
 
     - name: Upload Application Artifacts to S3
       run: |
