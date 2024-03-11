@@ -9,4 +9,4 @@ pwd
 ls
 
 # Install Python dependencies using pip
-pip install -r /var/www/flask-app/requirements.txt
+pip install -r requirements.txt
