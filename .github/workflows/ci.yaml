@@ -3,7 +3,7 @@ name: CI
 on:
   push:
     branches:
-      - '*'
+      - main
   pull_request:
     branches:
       - '*'
@@ -108,6 +108,7 @@ jobs:
       run: trivy image flask-app:latest
 
     - name: Install AWS CLI
+      if: github.event_name == 'push' && github.ref == 'refs/heads/master'
       run: |
          sudo apt-get install awscli
     
@@ -116,16 +117,19 @@ jobs:
         aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }} && aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }} && aws configure set default.region eu-north-1
 
     - name: Compress Application Artifacts
+      if: github.event_name == 'push' && github.ref == 'refs/heads/master'
       run: |
         zip -r artifacts.zip .
         echo "Artifacts compressed as artifacts.zip."
 
     - name: Upload Application Artifacts to S3
+      if: github.event_name == 'push' && github.ref == 'refs/heads/master'
       run: |
         aws s3 cp ./artifacts.zip s3://deploybucketflask/ 
         echo "Artifacts uploaded to S3 bucket."
 
     - name: Deploy to AWS CodeDeploy
+      if: github.event_name == 'push' && github.ref == 'refs/heads/master'
       run: |
         aws deploy create-deployment --application-name flask-app --deployment-group-name flask-app-dep-grp --s3-location bucket=deploybucketflask,key=artifacts.zip,bundleType=zip
         echo "Deployment created in AWS CodeDeploy."
