@@ -33,20 +33,10 @@ jobs:
       run: |
         pip install black
         black .
-
-    - name: Build project
-      run: |
-        python setup.py build
       
     - name: Run unit tests
       run: |
         pytest --junitxml=pytest_results.xml
-
-    - name: Start Flask server
-      run: python manage.py run &
-        
-    - name: Run acceptance tests
-      run: python acceptance_tests.py
 
     - name: Store unit test results
       uses: actions/upload-artifact@v2
@@ -59,11 +49,21 @@ jobs:
         pip install bandit
         bandit -r . --exit-zero --format json -o bandit_report.json
 
-    - name: Store Bandit report (security scan)
+    - name: Store security scan report 
       uses: actions/upload-artifact@v2
       with:
         name: security_scanning_results
         path: bandit_report.json
+
+    - name: Build project
+      run: |
+        python setup.py build
+
+    - name: Start Flask server
+      run: python manage.py run &
+        
+    - name: Run acceptance tests
+      run: python acceptance_tests.py
 
     - name: Install Docker
       run: |
@@ -97,12 +97,14 @@ jobs:
       run: docker push ghcr.io/${{ github.repository_owner }}/flask-app:latest
 
     - name: Install Trivy
+      if: github.event_name == 'push' && github.ref == 'refs/heads/master'
       run: |
         wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | sudo apt-key add -
         echo deb https://aquasecurity.github.io/trivy-repo/deb $(lsb_release -cs) main | sudo tee -a /etc/apt/sources.list.d/trivy.list
         sudo apt-get update && sudo apt-get install -y trivy  
 
     - name: Vulnerability scanning with Trivy
+      if: github.event_name == 'push' && github.ref == 'refs/heads/master'
       run: trivy image flask-app:latest
 
     - name: Install AWS CLI
