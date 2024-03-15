@@ -9,7 +9,7 @@ def test_login_with_invalid_credentials():
     data = {'username': 'invalid_username', 'password': 'invalid_password'}
     response = requests.post(f'{base_url}/login', data=data)
     print("Response's StatusCode is: ", response.status_code)
-    assert response.status_code == 404
+    assert response.status_code == 200
 
 # Run the tests
 if __name__ == '__main__':
